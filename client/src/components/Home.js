@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from "react";
-import Likes from "../utils/Likes";
-import Comments from "../utils/Comments";
-import { useNavigate } from "react-router-dom";
-import Nav from "./Nav";
+import React, { useEffect, useState } from 'react'
+import Likes from '../utils/Likes'
+import Comments from '../utils/Comments'
+import { useNavigate } from 'react-router-dom'
+import Nav from './Nav'
 
 const Home = () => {
-	const [thread, setThread] = useState("");
-	const [threadList, setThreadList] = useState([]);
-	const navigate = useNavigate();
+	const [thread, setThread] = useState('')
+	const [threadList, setThreadList] = useState([])
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const checkUser = () => {
-			if (!localStorage.getItem("_id")) {
-				navigate("/");
+			if (!localStorage.getItem('_id')) {
+				navigate('/')
 			} else {
-				fetch("http://localhost:4000/api/all/threads")
+				fetch('http://localhost:3000/api/all/threads')
 					.then((res) => res.json())
 					.then((data) => setThreadList(data.threads))
-					.catch((err) => console.error(err));
+					.catch((err) => console.error(err))
 			}
-		};
-		checkUser();
-	}, [navigate]);
+		}
+		checkUser()
+	}, [navigate])
 
 	const createThread = () => {
-		fetch("http://localhost:4000/api/create/thread", {
-			method: "POST",
+		fetch('http://localhost:3000/api/create/thread', {
+			method: 'POST',
 			body: JSON.stringify({
 				thread,
-				id: localStorage.getItem("_id"),
+				id: localStorage.getItem('_id'),
 			}),
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json',
 			},
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				alert(data.message);
-				setThreadList(data.threads);
+				alert(data.message)
+				setThreadList(data.threads)
 			})
-			.catch((err) => console.error(err));
-	};
+			.catch((err) => console.error(err))
+	}
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		createThread();
-		setThread("");
-	};
+		e.preventDefault()
+		createThread()
+		setThread('')
+	}
 	return (
 		<>
 			<Nav />
@@ -85,7 +85,7 @@ const Home = () => {
 				</div>
 			</main>
 		</>
-	);
-};
+	)
+}
 
-export default Home;
+export default Home

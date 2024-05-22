@@ -1,44 +1,44 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
 
-	const navigate = useNavigate();
+	const navigate = useNavigate()
 
 	const signUp = () => {
-		fetch("http://localhost:4000/api/register", {
-			method: "POST",
+		fetch('http://localhost:3000/api/register', {
+			method: 'POST',
 			body: JSON.stringify({
 				email,
 				password,
 				username,
 			}),
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json',
 			},
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.error_message) {
-					alert(data.error_message);
+					alert(data.error_message)
 				} else {
-					alert("Account created successfully!");
-					navigate("/");
+					alert('Account created successfully!')
+					navigate('/')
 				}
 			})
-			.catch((err) => console.error(err));
-	};
+			.catch((err) => console.error(err))
+	}
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		signUp();
-		setEmail("");
-		setUsername("");
-		setPassword("");
-	};
+		e.preventDefault()
+		signUp()
+		setEmail('')
+		setUsername('')
+		setPassword('')
+	}
 	return (
 		<main className='register'>
 			<h1 className='registerTitle'>Create an account</h1>
@@ -76,7 +76,7 @@ const Register = () => {
 				</p>
 			</form>
 		</main>
-	);
-};
+	)
+}
 
-export default Register;
+export default Register
