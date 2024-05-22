@@ -35,7 +35,7 @@ const Replies = () => {
 
 	useEffect(() => {
 		const fetchReplies = () => {
-			fetch('http://localhost:3000/api/thread/replies', {
+			fetch('http://localhost:4000/api/thread/replies', {
 				method: 'POST',
 				body: JSON.stringify({
 					id,

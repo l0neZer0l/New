@@ -3,7 +3,7 @@ const { Novu } = require('@novu/node')
 const novu = new Novu('<YOUR_API_KEY>')
 const cors = require('cors')
 const app = express()
-const PORT = 3000
+const PORT = 4000
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
